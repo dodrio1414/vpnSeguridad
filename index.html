@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Ejemplo de Frontend</title>
+  </head>
+  <body>
+    <div class="container">
+      <img src="vpn.PNG" alt="Ejemplo de Imagen" />
+      <div class="columna">
+        <h2>CONFIGURACIÓN DEL ENRUTADOR R1</h2>
+        <p>R1#enable R1#configure terminal R1(config)#crypto isakmp enable</p>
+        <p>
+          R1(config)#crypto isakmp policy 10 R1(config-isakmp)#authentication
+        </p>
+        <p>
+          pre-share R1(config-isakmp)#hash md5 R1(config-isakmp)#encryption des
+        </p>
+        <p>R1(config-isakmp)#group 2 R1(config-isakmp)#lifetime 3600</p>
+        <p>
+          R1(config-isakmp)#exit R1(config)#crypto isakmp key security address
+        </p>
+        <p>
+          30.0.0.2 255.0.0.0 R1(config)#crypto ipsec transform-set hoset esp-des
+        </p>
+        <p>esp-md5-hmac R1(cfg-crypto-trans)#exit R1(config)#access-list 101</p>
+        <p>permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255</p>
+        <p>
+          R1(config)#crypto map r1map 10 ipsec-isakmp R1(config-crypto-map)#set
+        </p>
+        <p>peer 30.0.0.2 R1(config-crypto-map)#set transform-set hoset</p>
+        <p>
+          R1(config-crypto-map)#match address 101 R1(config-crypto-map)#exit
+        </p>
+        <p>R1(config)#interface Serial 0/0 R1(config-if)#crypto map r1map</p>
+        <p>R1(config-if)#exit</p>
+      </div>
+      <div class="columna">
+        <h2>CONFIGURACIÓN DEL ENRUTADOR R3</h2>
+
+        <p>R3(config)#</p>
+        <p>R3(config)#crypto isakmp enable</p>
+        <p>R3(config)#crypto isakmp policy 10</p>
+        <p>R3(config-isakmp)#authentication pre-share</p>
+        <p>R3(config-isakmp)#hash md5</p>
+        <p>R3(config-isakmp)#encryption des</p>
+        <p>R3(config-isakmp)#group 2</p>
+        <p>R3(config-isakmp)#lifetime 3600</p>
+        <p>R3(config-isakmp)#exit</p>
+        <p>R3(config)#crypto isakmp key security address 20.0.0.1 255.0.0.0</p>
+        <p>R3(config)#crypto ipsec transform-set r3set esp-des esp-md5-hmac</p>
+        <p>R3(cfg-crypto-trans)#exit</p>
+        <p>
+          R3(config)#access-list 101 permit ip 192.168.2.0 0.0.0.255 192.168.1.0
+          0.0.0.255
+        </p>
+        <p>R3(config)#crypto map r3map 10 ipsec-isakmp</p>
+        <p>R3(config-crypto-map)#set peer 20.0.0.1</p>
+        <p>R3(config-crypto-map)#set transform-set r3set</p>
+        <p>R3(config-crypto-map)#match address 101</p>
+        <p>R3(config-crypto-map)#exit</p>
+        <p>R3(config)#interface serial 0/1</p>
+        <p>R3(config-if)#crypto map r3map</p>
+        <p>R3(config-if)#exit</p>
+
+        <!-- Nuevo texto en la columna derecha -->
+      </div>
+    </div>
+  </body>
+</html>

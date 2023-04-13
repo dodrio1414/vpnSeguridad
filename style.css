@@ -1,0 +1,31 @@
+
+/* Estilos CSS para el contenedor principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  display: flex; /* Cambia el display a flex para crear columnas */
+  flex-wrap: wrap; /* Permite que las columnas se envuelvan a una nueva línea si no caben en el ancho del contenedor */
+  align-items: flex-start; /* Alinea los elementos en la parte superior del contenedor */
+}
+
+/* Estilos CSS para la imagen */
+.container img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  flex: 1; /* Ajusta el ancho de la imagen para ocupar todo el ancho disponible */
+}
+
+/* Estilos CSS para las columnas de texto */
+.container .columna {
+  flex: 1; /* Ajusta el ancho de las columnas de texto */
+  margin: 0 10px; /* Agrega margen entre las columnas de texto */
+}
+
+/* Estilos CSS para el texto */
+.container p {
+  font-size: 18px;
+  color: #333;
+}
